@@ -25,7 +25,6 @@ namespace WPFApp
         {
             InitializeComponent();
             ApiHelper.InitializeClient();
-            nextImageButton.IsEnabled = false;
         }
 
         private async Task LoadImage(int imageNumber = 0)
@@ -65,6 +64,7 @@ namespace WPFApp
 
         private async void nextImageButton_Click(object sender, RoutedEventArgs e)
         {
+            
             if (currentNumber < maxNumber)
             {
                 currentNumber += 1;
@@ -76,6 +76,7 @@ namespace WPFApp
                     nextImageButton.IsEnabled = false;
                 }
             }
+           
         }
     }
 }
