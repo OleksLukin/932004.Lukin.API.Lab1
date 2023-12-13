@@ -27,15 +27,10 @@ namespace WPFApp
             ApiHelper.InitializeClient();
         }
 
-        private async Task LoadImage(int imageNumber = 0)
+        private async Task LoadImage(int imageNumber = 1)
         {
             var comic = await ComicProcessor.LoadComic(imageNumber);
-
-            if (imageNumber == 0)
-            {
-                maxNumber = comic.Num;
-            }
-
+         
             currentNumber = comic.Num;
 
             var uriSource = new Uri(comic.Img, UriKind.Absolute);
@@ -44,7 +39,11 @@ namespace WPFApp
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var comic = await ComicProcessor.LoadComic();
+            maxNumber = comic.Num;
+
             await LoadImage();
+            previousImageButton.IsEnabled = false;
         }
 
         private async void previousImageButton_Click(object sender, RoutedEventArgs e)
